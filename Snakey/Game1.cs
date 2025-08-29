@@ -17,6 +17,7 @@ public class Game1 : Game {
 
     protected override void Initialize() {
         // TODO: Add your initialization logic here
+        sceneHandler = new SceneHandler();
         sceneHandler.Initialize();
         base.Initialize();
     }
@@ -39,7 +40,7 @@ public class Game1 : Game {
 
     protected override void Draw(GameTime gameTime) {
         GraphicsDevice.Clear(Color.CornflowerBlue);
-        sceneHandler.Draw(spriteBatch);
+        sceneHandler.Render(spriteBatch);
         base.Draw(gameTime);
     }
 }

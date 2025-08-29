@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Snakey.GameObjects;
 
 public class GameObject {
-    private bool isActive;
+    private bool isActive = true;
     private Vector2 position;
     private Vector2 origin;
     private Vector2 size;
@@ -17,5 +17,9 @@ public class GameObject {
 
     public GameObject() {
         
+    }
+    public void RenderObject(SpriteBatch pSpriteBatch) {
+    }
+    public void UpdateObject(GameTime pGameTime) {
     }
 }
