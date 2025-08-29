@@ -18,4 +18,8 @@ public class GameObject {
     public GameObject() {
         
     }
+    public void RenderObject(SpriteBatch pSpriteBatch) {
+    }
+    public void UpdateObject(GameTime pGameTime) {
+    }
 }

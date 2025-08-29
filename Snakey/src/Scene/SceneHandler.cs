@@ -36,9 +36,9 @@ public class SceneHandler {
     /// Draws the current scene.
     /// </summary>
     /// <param name="pSpriteBatch"></param>
-    public void Draw(SpriteBatch pSpriteBatch) {
+    public void Render(SpriteBatch pSpriteBatch) {
         pSpriteBatch.Begin();
-        scene.Draw(pSpriteBatch);
+        scene.Render(pSpriteBatch);
         pSpriteBatch.End();
     }
 }

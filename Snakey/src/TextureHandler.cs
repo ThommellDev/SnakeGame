@@ -21,9 +21,9 @@ public class TextureHandler {
     /// <summary>
     /// Tries adding the Texture2D parameter, if unsuccessful it'll return cleanly.
     /// </summary>
-    /// <param name="textureName"></param>
-    /// <param name="texture"></param>
-    private void AddTexture(string textureName, Texture2D texture) {
+    /// <param name="textureName">The newly added texture's key.</param>
+    /// <param name="texture">The newly added texture's value.</param>
+    public void AddTexture(string textureName, Texture2D texture) {
         // Looks up the string parameter, if successful, it'll return with an error message.
         if (textures.ContainsKey(textureName)) {
             Console.Error.WriteLine("Texture already exists: " + textureName);
@@ -32,6 +32,11 @@ public class TextureHandler {
         // Caches the Texture2D by string within the Dictionary.
         textures.Add(textureName, texture);
     } 
+    /// <summary>
+    /// Return getting the parameters given name
+    /// </summary>
+    /// <param name="textureName"></param>
+    /// <returns></returns>
     private Texture2D GetTexture(string textureName) {
         // Return matching saved texture by name.
         for (int i = 0; i < textures.Count; i++) {
