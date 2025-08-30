@@ -12,9 +12,14 @@ public class GameObject {
     private List<Component> components = new();
     List<IRenderable> renderables = new();
     List<IUpdateable> updateables = new();
+    private ICollider collider;
     private Transform transform;
+    private List<GameObject> inactivePool = new();
     public Transform Transform => transform;
-    protected GameObject(Transform pTransform, params Component[] pComponents) {
+    public List<Component> Components => components;
+    public ICollider Collider => collider;
+
+    public GameObject(Transform pTransform, params Component[] pComponents) {
         transform = pTransform;
         components.Add(transform);
         components.AddRange(pComponents);
@@ -37,6 +42,12 @@ public class GameObject {
         foreach (IUpdateable updateable in updateables) {
             updateable.Update(pGameTime);
         }
+
+        // AFTER Update call, set object inactive.
+        foreach (GameObject obj in inactivePool) {
+            obj.Transform.Toggle(false);
+        }
+        inactivePool.Clear();
     }
     public void Render(SpriteBatch pSpriteBatch) {
         foreach (IRenderable renderable in renderables) {
@@ -48,6 +59,8 @@ public class GameObject {
             updateables.Add(updateable);
         if (pComponent is IRenderable renderable)
             renderables.Add(renderable);
+        if (pComponent is ICollider collidable)
+            collider = collidable;
     }
     public T GetComponent<T>() where T : Component {
         foreach (Component component in components) {
@@ -56,8 +69,10 @@ public class GameObject {
         }
         return null;
     }
-
     private void SetOwner(GameObject pGameObject, Component pComponent) {
         pComponent.SetOwner(pGameObject);
+    }
+    public void AddObjectToInactivePool(GameObject pGameObject) {
+        inactivePool.Add(pGameObject);
     }
 }
