@@ -13,7 +13,6 @@ public class Transform : Component {
     public Vector2 Position => position;
     public Vector2 Scale => scale;
     public Vector2 Origin => origin;
-
     public float Rotation => rotation;
 
     public Transform(bool pIsActive = true, Vector2 pPosition = default, Vector2 pScale = default, Vector2 pOrigin = default, float pRotation = 0) {
@@ -24,7 +23,6 @@ public class Transform : Component {
         rotation = pRotation;
         CheckValues();
     }
-
     private void CheckValues() {
         if (origin == default) 
             origin = new Vector2(0.5f, 0.5f);
@@ -35,6 +33,13 @@ public class Transform : Component {
         origin = pOrigin;
     }
 
+    public void SetRotation(float pRotation) {
+        rotation = pRotation;
+    }
+
+    public void Toggle(bool pIsActive) {
+        isActive = pIsActive;
+    }
     public void Translate(Vector2 pAddedPosition) {
         position += pAddedPosition;
     }
