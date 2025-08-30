@@ -14,6 +14,7 @@ public class SpriteRenderer : Component, IRenderable {
     public Color Color => color;
     public float LayerDepth => layerDepth;
     public SpriteEffects Effects => effects;
+    public Texture2D Texture => texture;
     public SpriteRenderer(TextureType pType, Color pColor = default, float pLayerDepth = 0, SpriteEffects pEffects = SpriteEffects.None) {
         textureType = pType;
         color = pColor;
@@ -36,6 +37,12 @@ public class SpriteRenderer : Component, IRenderable {
     private Vector2 GetOriginValue() {
         return new Vector2(texture.Bounds.Width * transform.Origin.X, texture.Bounds.Height * transform.Origin.Y);
     }
+    #region Setters
+
+    public void SetTexture(TextureType pNewTexture) {
+        texture = TextureHandler.Instance.GetTexture(pNewTexture);
+    }
+    #endregion
     public void Render(SpriteBatch pSpriteBatch) {
         pSpriteBatch.Draw(texture, transform.Position, null, color, transform.Rotation, transform.Origin, transform.Scale, SpriteEffects.None, 0f);
     }

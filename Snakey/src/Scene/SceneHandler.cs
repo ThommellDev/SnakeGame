@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Snakey.Scene;
@@ -9,36 +10,38 @@ namespace Snakey;
 /// This class handles the current scene being played.
 /// </summary>
 public class SceneHandler {
+    private static SceneHandler instance;
+    public static SceneHandler Instance => instance;
+    private SnakeScene snakeScene = new();
 
-    private SnakeScene scene = new();
-    // temporary, make a utility class later
-    private ContentManager content;
-    private TextureHandler textureHandler;
-
+    public SnakeScene ActiveScene => snakeScene;
     public SceneHandler(ContentManager pContent) {
-        content = pContent;
-        textureHandler = new TextureHandler(content);
+        TextureHandler textureHandler = new TextureHandler(pContent);
+        if (instance != null) {
+            throw new Exception($"{GetType()} already initialized? This should never happen.");
+        }
+        instance = this;
     }
     /// <summary>
     /// Initializes the current scene.
     /// </summary>
     public void Initialize() {
-        scene.CreateObjects();
-        scene.Initialize();
+        snakeScene.CreateObjects();
+        snakeScene.Initialize();
     }
     
     /// <summary>
     /// Loads the current scene.
     /// </summary>
     public void Load() {
-        scene.Load();
+        snakeScene.Load();
     }
     
     /// <summary>
     /// Updates the current scene.
     /// </summary>
     public void Update(GameTime pGameTime) {
-        scene.Update(pGameTime);
+        snakeScene.Update(pGameTime);
     }
 
     /// <summary>
@@ -47,7 +50,7 @@ public class SceneHandler {
     /// <param name="pSpriteBatch"></param>
     public void Render(SpriteBatch pSpriteBatch) {
         pSpriteBatch.Begin();
-        scene.Render(pSpriteBatch);
+        snakeScene.Render(pSpriteBatch);
         pSpriteBatch.End();
     }
 }

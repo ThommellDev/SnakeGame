@@ -2,12 +2,15 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Snakey.Components;
 using Snakey.GameObjects;
 
 namespace Snakey;
 
 public class BaseScene {
     private List<GameObject> objectsInScene = new();
+    
+    public List<GameObject> ObjectsInScene => objectsInScene;
 
     /// <summary>
     /// Override this method and create your objects in here using TryAddObject.
@@ -45,5 +48,13 @@ public class BaseScene {
     public void TryAddObject(GameObject pGameObject) {
         if (objectsInScene.Any(x => ReferenceEquals(x, pGameObject))) return;
         objectsInScene.Add(pGameObject);
+    }
+    public List<T> GetObjects<T>() where T : GameObject, new() {
+        List<T> objects = new();
+        foreach (GameObject obj in objectsInScene) {
+            if (!obj.Transform.IsActive) continue;
+            objects.Add(obj as T);
+        }
+        return objects;
     }
 }
