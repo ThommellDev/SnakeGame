@@ -8,20 +8,34 @@ namespace Snakey;
 
 public class BaseScene {
     private List<GameObject> objectsInScene = new();
-    public virtual void Initialize() {}
-    public virtual void Load() {}
 
+    /// <summary>
+    /// Override this method and create your objects in here using TryAddObject.
+    /// </summary>
+    public virtual void CreateObjects() {
+    }
+    public virtual void Initialize() {
+        foreach (GameObject obj in objectsInScene) {
+            obj.Initialize();
+        }
+    }
+    public virtual void Load() {
+        foreach (GameObject obj in objectsInScene){
+            if (!obj.Transform.IsActive) continue;
+            obj.Load();
+        }
+    }
     public virtual void Update(GameTime pGameTime) {
         foreach (GameObject obj in objectsInScene) {
-            if (!obj.IsActive) continue;
-            obj.UpdateObject(pGameTime);
+            if (!obj.Transform.IsActive) continue;
+            obj.Update(pGameTime);
         }
     }
 
     public virtual void Render(SpriteBatch pSpriteBatch) {
         foreach (GameObject obj in objectsInScene) {
-            if (!obj.IsActive) continue;
-            obj.RenderObject(pSpriteBatch);
+            if (!obj.Transform.IsActive) continue;
+            obj.Render(pSpriteBatch);
         }
     }
     /// <summary>
