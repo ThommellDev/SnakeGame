@@ -416,5 +416,8 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+<<<<<<< HEAD
+=======
 
 *.xml
+>>>>>>> origin/SNAKE-8-Grid-Rendering

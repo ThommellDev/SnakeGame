@@ -1,0 +1,44 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace Snakey;
+
+/// <summary>
+/// This class handles the current scene being played.
+/// </summary>
+public class SceneHandler {
+
+    private SnakeScene scene = new();
+    private TextureHandler textureHandler = new();
+    
+    /// <summary>
+    /// Initializes the current scene.
+    /// </summary>
+    public void Initialize() {
+        scene.Initialize();
+    }
+    
+    /// <summary>
+    /// Loads the current scene.
+    /// </summary>
+    public void Load() {
+        scene.Load();
+    }
+    
+    /// <summary>
+    /// Updates the current scene.
+    /// </summary>
+    public void Update(GameTime pGameTime) {
+        scene.Update(pGameTime);
+    }
+
+    /// <summary>
+    /// Draws the current scene.
+    /// </summary>
+    /// <param name="pSpriteBatch"></param>
+    public void Render(SpriteBatch pSpriteBatch) {
+        pSpriteBatch.Begin();
+        scene.Render(pSpriteBatch);
+        pSpriteBatch.End();
+    }
+}
