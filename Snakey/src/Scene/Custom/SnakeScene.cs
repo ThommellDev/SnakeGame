@@ -15,7 +15,6 @@ public class SnakeScene : BaseScene {
         SnakeMovement snakeMover = new(pTimeToPush: 1f);
         SnakeRotator rotator = new();
         SnakeCollision snakeCollision = new();
-        
         Snake snake = new Snake(snakeTransform, SnakeDirection.Up, snakeRenderer, snakeMover, rotator, snakeCollider, snakeCollision);
         TryAddObject(snake);
         
