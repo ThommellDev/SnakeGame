@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Snakey.Scene;
 
 namespace Snakey;
 
@@ -9,12 +11,19 @@ namespace Snakey;
 public class SceneHandler {
 
     private SnakeScene scene = new();
-    private TextureHandler textureHandler = new();
-    
+    // temporary, make a utility class later
+    private ContentManager content;
+    private TextureHandler textureHandler;
+
+    public SceneHandler(ContentManager pContent) {
+        content = pContent;
+        textureHandler = new TextureHandler(content);
+    }
     /// <summary>
     /// Initializes the current scene.
     /// </summary>
     public void Initialize() {
+        scene.CreateObjects();
         scene.Initialize();
     }
     
