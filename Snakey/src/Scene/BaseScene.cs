@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Snakey.GameObjects;
@@ -22,5 +23,13 @@ public class BaseScene {
             if (!obj.IsActive) continue;
             obj.RenderObject(pSpriteBatch);
         }
+    }
+    /// <summary>
+    /// Tries adding the parameter's GameObject.
+    /// </summary>
+    /// <param name="pGameObject">The new GameObject.</param>
+    public void TryAddObject(GameObject pGameObject) {
+        if (objectsInScene.Any(x => ReferenceEquals(x, pGameObject))) return;
+        objectsInScene.Add(pGameObject);
     }
 }
