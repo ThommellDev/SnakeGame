@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Content;
@@ -11,7 +11,6 @@ public class TextureHandler {
     private Dictionary<TextureType, Texture2D> textures;
     public static TextureHandler Instance => instance;
     public Dictionary<TextureType, Texture2D> Textures => textures;
-    
     public TextureHandler(ContentManager content) {
         if (instance != null) {
             throw new Exception("Texture handler already initialized? This should never happen.");
