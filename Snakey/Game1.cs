@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -17,7 +17,7 @@ public class Game1 : Game {
 
     protected override void Initialize() {
         // TODO: Add your initialization logic here
-        sceneHandler = new SceneHandler();
+        sceneHandler = new SceneHandler(Content);
         sceneHandler.Initialize();
         base.Initialize();
     }
@@ -33,8 +33,6 @@ public class Game1 : Game {
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
         sceneHandler.Update(gameTime);
-        // TODO: Add your update logic here
-
         base.Update(gameTime);
     }
 

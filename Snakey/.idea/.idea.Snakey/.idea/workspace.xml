@@ -9,10 +9,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f42b43c6-d7fa-413a-a91e-f4b0a8d763dd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Snakey/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Snakey/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Game1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameObjects/GameObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObjects/GameObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/SceneHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/SceneHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/SnakeScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/SnakeScene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Custom/SnakeCollision.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Custom/SnakeCollision.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameObjects/BaseLayer/GameObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObjects/BaseLayer/GameObject.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TextureHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/TextureHandler.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,18 +25,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;thommell&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "thommell"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/thommell/SnakeGame.git&quot;,
-    &quot;accountId&quot;: &quot;996961a6-1e3a-463f-85c5-e773f0735d6d&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/thommell/SnakeGame.git",
+    "accountId": "996961a6-1e3a-463f-85c5-e773f0735d6d"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/777f4218e4a0469dbc075c5f54bf5f721c5a00/91/abf9f8cc/Game.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -55,24 +54,22 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "XThreadsFramesViewSplitterKey": "0.48773006",
     "git-widget-placeholder": "develop",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
     <configuration name="Snakey" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/bin/Debug/net6.0/Snakey" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bin/Debug/net6.0" />
       <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="1" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/Snakey.csproj" />
@@ -80,7 +77,7 @@
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
       <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="" />
+      <option name="PROJECT_TFM" value="net6.0" />
       <method v="2">
         <option name="Build" />
       </method>
@@ -96,7 +93,7 @@
       <updated>1756407964048</updated>
       <workItem from="1756407965782" duration="47000" />
       <workItem from="1756408177687" duration="5336000" />
-      <workItem from="1756478180302" duration="1684000" />
+      <workItem from="1756726706568" duration="2902000" />
     </task>
     <servers />
   </component>
