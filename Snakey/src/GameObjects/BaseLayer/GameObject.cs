@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Snakey.Components;
 using Snakey.Components.Custom;
+using Component = Snakey.Components.Component;
 using IUpdateable = Snakey.Components.IUpdateable;
 
 namespace Snakey.GameObjects;
@@ -14,6 +16,7 @@ public class GameObject {
     List<IUpdateable> updateables = new();
     private ICollider collider;
     private Transform transform;
+    private bool hasInitialized;
     private List<GameObject> inactivePool = new();
     public Transform Transform => transform;
     public List<Component> Components => components;
@@ -29,9 +32,12 @@ public class GameObject {
         }
     }
     public void Initialize() {
+        if (CheckInitialization())
+            return;
         foreach (Component component in components) {
             component.Initialize();
         }
+        hasInitialized = true;
     }
     public void Load() {
         foreach (Component component in components) {
@@ -73,6 +79,9 @@ public class GameObject {
     }
     private void SetOwner(GameObject pGameObject, Component pComponent) {
         pComponent.SetOwner(pGameObject);
+    }
+    public bool CheckInitialization() {
+        return hasInitialized;
     }
     public void AddObjectToInactivePool(GameObject pGameObject) {
         inactivePool.Add(pGameObject);

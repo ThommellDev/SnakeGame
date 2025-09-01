@@ -5,5 +5,6 @@ public enum TextureType {
     SnakeHeadRight,
     SnakeHeadUp,
     SnakeHeadDown,
-    Apple
+    Apple,
+    Custom
 }

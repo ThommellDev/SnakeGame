@@ -29,14 +29,16 @@ public class BaseScene {
         }
     }
     public virtual void Update(GameTime pGameTime) {
-        foreach (GameObject obj in objectsInScene) {
+        for (int i = objectsInScene.Count - 1; i >= 0; i--) {
+            GameObject obj = objectsInScene[i];
             if (!obj.Transform.IsActive) continue;
             obj.Update(pGameTime);
         }
     }
 
     public virtual void Render(SpriteBatch pSpriteBatch) {
-        foreach (GameObject obj in objectsInScene) {
+        for (int i = objectsInScene.Count - 1; i >= 0; i--) {
+            GameObject obj = objectsInScene[i];
             if (!obj.Transform.IsActive) continue;
             obj.Render(pSpriteBatch);
         }
@@ -48,6 +50,13 @@ public class BaseScene {
     public void TryAddObject(GameObject pGameObject) {
         if (objectsInScene.Any(x => ReferenceEquals(x, pGameObject))) return;
         objectsInScene.Add(pGameObject);
+        
+        // CHECK if object has already initialized, otherwise skip initializing/loading it again.
+        if (pGameObject.CheckInitialization())
+            return;
+        
+        pGameObject.Initialize();
+        pGameObject.Load();
     }
     public List<T> GetObjects<T>() where T : GameObject, new() {
         List<T> objects = new();

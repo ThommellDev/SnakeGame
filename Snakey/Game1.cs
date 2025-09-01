@@ -17,7 +17,7 @@ public class Game1 : Game {
 
     protected override void Initialize() {
         // TODO: Add your initialization logic here
-        sceneHandler = new SceneHandler(Content);
+        sceneHandler = new SceneHandler(Content, GraphicsDevice);
         sceneHandler.Initialize();
         base.Initialize();
     }

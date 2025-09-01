@@ -11,12 +11,12 @@ namespace Snakey;
 /// </summary>
 public class SceneHandler {
     private static SceneHandler instance;
-    public static SceneHandler Instance => instance;
+    
     private SnakeScene snakeScene = new();
-
     public SnakeScene ActiveScene => snakeScene;
-    public SceneHandler(ContentManager pContent) {
-        TextureHandler textureHandler = new TextureHandler(pContent);
+    public static SceneHandler Instance => instance;
+    public SceneHandler(ContentManager pContent, GraphicsDevice pGraphics) {
+        TextureHandler textureHandler = new TextureHandler(pContent, pGraphics);
         if (instance != null) {
             throw new Exception($"{GetType()} already initialized? This should never happen.");
         }

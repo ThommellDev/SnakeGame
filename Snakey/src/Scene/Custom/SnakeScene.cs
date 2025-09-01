@@ -8,8 +8,10 @@ namespace Snakey.Scene;
 
 public class SnakeScene : BaseScene {
     public override void CreateObjects() {
+        
         // Player // Snake
-        Transform snakeTransform = new Transform(pPosition: new Vector2(200, 200));
+        Vector2 snakePosition = TextureHandler.Instance.GetTextureBounds(TextureType.SnakeHeadUp);
+        Transform snakeTransform = new Transform(pPosition: snakePosition);
         SpriteRenderer snakeRenderer = new SpriteRenderer(TextureType.SnakeHeadUp);
         BoxCollider2D snakeCollider = new();
         SnakeMovement snakeMover = new(pTimeToPush: 1f);
@@ -26,15 +28,21 @@ public class SnakeScene : BaseScene {
         Apple apple = new Apple(appleTransform, appleRenderer, appleCollider, appleCollision);
         TryAddObject(apple);
         
-        // CollisionHandler
-        CollisionManager collisionManager = new CollisionManager();
+        // Collision Manager
+        CollisionManager collManager = new CollisionManager();
+        GameObject collisionManagerHolder = new(new Transform(), collManager);
+        TryAddObject(collisionManagerHolder);
         
-        GameObject manager = new(new Transform(), collisionManager);
-        TryAddObject(manager);
+        // Grid Manager
+        GridManager gridManager = new();
+        gridManager.SetGridAmount(9);
+        gridManager.SetGridSize(40);
+        GameObject gridManagerHolder = new(new Transform(pPosition: new Vector2(snakePosition.X - 20, snakePosition.Y - 20)), gridManager);
+        TryAddObject(gridManagerHolder);
     }
 
     public override void Update(GameTime pGameTime) {
-        Debug.WriteLine("Hello"); // appears in Rider Debug console
+        Debug.WriteLine("Hello");
         base.Update(pGameTime); 
     }
 }
