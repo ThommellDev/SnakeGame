@@ -39,7 +39,7 @@ public class TextureHandler {
             return;
         } 
         // Caches the Texture2D by string within the Dictionary.
-        textures.Add(textureType, texture);
+        textures.Add(textureType,  texture);
     } 
     /// <summary>
     /// Return getting the parameters given texture type..
