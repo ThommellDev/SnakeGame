@@ -1,11 +1,15 @@
 ﻿#if DEBUG
 using System.Runtime.InteropServices;
 
-[DllImport("kernel32.dll")]
+// UNCOMMENT THIS IF YOURE ON WINDOWS!
+// comment this if youre on linux!
+//[DllImport("kernel32.dll")]
 static extern bool AllocConsole();
 
-// Allocate a console window
-AllocConsole();
+
+// UNCOMMENT THIS IF YOURE ON WINDOWS!
+// comment this if youre on linux!
+//AllocConsole();
 #endif
 
 using var game = new Snakey.Game1();

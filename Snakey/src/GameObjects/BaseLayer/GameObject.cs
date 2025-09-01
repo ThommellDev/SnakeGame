@@ -42,7 +42,9 @@ public class GameObject {
         foreach (IUpdateable updateable in updateables) {
             updateable.Update(pGameTime);
         }
-
+        
+        if (inactivePool.Count <= 0) return; 
+        
         // AFTER Update call, set object inactive.
         foreach (GameObject obj in inactivePool) {
             obj.Transform.Toggle(false);

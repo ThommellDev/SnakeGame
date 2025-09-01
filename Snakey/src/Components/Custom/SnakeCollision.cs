@@ -5,7 +5,7 @@ namespace Snakey.Components.Custom;
 
 public class SnakeCollision : Component, ICollider {
     public void Collide(GameObject pOtherObject) {
-        pOtherObject.Transform.Toggle(false);
+        Owner.AddObjectToInactivePool(pOtherObject);
         Console.WriteLine($"{GetType().Name} collided with {pOtherObject.GetType().Name}!");
     }
 }
