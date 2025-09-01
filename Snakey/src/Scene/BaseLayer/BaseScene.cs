@@ -50,6 +50,11 @@ public class BaseScene {
     public void TryAddObject(GameObject pGameObject) {
         if (objectsInScene.Any(x => ReferenceEquals(x, pGameObject))) return;
         objectsInScene.Add(pGameObject);
+        
+        // CHECK if object has already initialized, otherwise skip initializing/loading it again.
+        if (pGameObject.CheckInitialization())
+            return;
+        
         pGameObject.Initialize();
         pGameObject.Load();
     }

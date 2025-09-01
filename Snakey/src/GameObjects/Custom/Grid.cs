@@ -1,8 +1,12 @@
-using Snakey.GameObjects;
+using Snakey.Components;
+using Snakey.Components.Custom;
+using Snakey.Enums;
 
-namespace Snakey.Components.Custom;
+namespace Snakey.GameObjects.Custom;
 
 public class Grid : GameObject{
-    public Grid(Transform pTransform, params Component[] pComponents) : base(pTransform, pComponents) {
+    GridType gridType;
+    public Grid(Transform pTransform, GridType pType, params Component[] pComponents) : base(pTransform, pComponents) {
+        gridType = pType;
     }
 }

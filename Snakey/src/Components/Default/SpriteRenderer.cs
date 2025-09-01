@@ -3,13 +3,20 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Snakey.Components.Custom;
 
+public enum SavedTextureType {
+    Enum,
+    String
+}
+
 public class SpriteRenderer : Component, IRenderable {
     private Transform transform;
     private TextureType textureType;
+    private string textureName;
     private Texture2D texture;
     private Color color;
     private float layerDepth;
     private SpriteEffects effects;
+    private SavedTextureType savedTextureType;
     
     public Color Color => color;
     public float LayerDepth => layerDepth;
@@ -20,7 +27,16 @@ public class SpriteRenderer : Component, IRenderable {
         color = pColor;
         layerDepth = pLayerDepth;
         effects = pEffects;
+        savedTextureType = SavedTextureType.Enum;
     }
+    public SpriteRenderer(string pTextureName, Color pColor = default, float pLayerDepth = 0, SpriteEffects pEffects = SpriteEffects.None) {
+        textureName = pTextureName;
+        color = pColor;
+        layerDepth = pLayerDepth;
+        effects = pEffects;
+        savedTextureType = SavedTextureType.String;
+    }
+    
     public override void Initialize() {
         transform = GetComponent<Transform>();
         CheckValues();
@@ -28,7 +44,12 @@ public class SpriteRenderer : Component, IRenderable {
     }
     private void CheckValues() {
         // IMPORTANT: Set this as highest hierarchy in code, Transform's SetOrigin depends on this.
-        texture = TextureHandler.Instance.GetTexture(textureType); 
+        if (SavedTextureType.Enum == savedTextureType) {
+            texture = TextureHandler.Instance.GetTexture(textureType); 
+        }
+        else {
+            texture = TextureHandler.Instance.GetTexture(textureName);
+        }
         if (color == default)
             color = Color.White;
         Vector2 temp = GetOriginValue();
