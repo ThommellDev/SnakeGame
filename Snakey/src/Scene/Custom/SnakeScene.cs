@@ -40,9 +40,4 @@ public class SnakeScene : BaseScene {
         GameObject gridManagerHolder = new(new Transform(pPosition: new Vector2(snakePosition.X - 20, snakePosition.Y - 20)), gridManager);
         TryAddObject(gridManagerHolder);
     }
-
-    public override void Update(GameTime pGameTime) {
-        Debug.WriteLine("Hello");
-        base.Update(pGameTime); 
-    }
 }

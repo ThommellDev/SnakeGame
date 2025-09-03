@@ -34,9 +34,11 @@ public class GameObject {
     public void Initialize() {
         if (CheckInitialization())
             return;
+        
         foreach (Component component in components) {
             component.Initialize();
         }
+        
         hasInitialized = true;
     }
     public void Load() {
@@ -83,7 +85,11 @@ public class GameObject {
     public bool CheckInitialization() {
         return hasInitialized;
     }
-    public void AddObjectToInactivePool(GameObject pGameObject) {
-        inactivePool.Add(pGameObject);
+    public void AddObjectToInactivePool(GameObject pObject = null) {
+        if (pObject == null) {
+            inactivePool.Add(this);
+            return;
+        }
+        inactivePool.Add(pObject);
     }
 }

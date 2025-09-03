@@ -8,7 +8,7 @@ public class Game1 : Game {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch spriteBatch;
     private SceneHandler sceneHandler;
-
+    private ScreenManager screenManager;
     public Game1() {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
@@ -18,12 +18,15 @@ public class Game1 : Game {
     protected override void Initialize() {
         // TODO: Add your initialization logic here
         sceneHandler = new SceneHandler(Content, GraphicsDevice);
+        screenManager = new ScreenManager(Window, _graphics);
         sceneHandler.Initialize();
         base.Initialize();
     }
 
     protected override void LoadContent() {
         spriteBatch = new SpriteBatch(GraphicsDevice);
+        _graphics.PreferredBackBufferWidth = 800;
+        _graphics.PreferredBackBufferHeight = 600;
         sceneHandler.Load();
         // TODO: use this.Content to load your game content here
     }

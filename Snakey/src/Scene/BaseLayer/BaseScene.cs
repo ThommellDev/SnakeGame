@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,6 +36,7 @@ public class BaseScene {
             if (!obj.Transform.IsActive) continue;
             obj.Update(pGameTime);
         }
+        Debug.WriteLine(objectsInScene.Count);
     }
 
     public virtual void Render(SpriteBatch pSpriteBatch) {
@@ -65,5 +68,13 @@ public class BaseScene {
             objects.Add(obj as T);
         }
         return objects;
+    }
+    public void RemoveObject(GameObject pGameObject) {
+        foreach (GameObject obj in objectsInScene) {
+            if (ReferenceEquals(obj, pGameObject)) {
+                objectsInScene.Remove(obj);
+                break;
+            }
+        }
     }
 }

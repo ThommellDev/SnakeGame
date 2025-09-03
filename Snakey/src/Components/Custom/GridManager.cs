@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
@@ -63,18 +64,18 @@ public class GridManager : Component, IUpdateable {
 
     public void Update(GameTime pGameTime) {
         state = Keyboard.GetState();
-        if (state.IsKeyDown(Keys.Space) && !hasGeneratedGrid) {
-            GenerateGrid();
-            hasGeneratedGrid = true;
+        if (state.IsKeyDown(Keys.Space)) {
+            GenerateGridPerScreenSize();
+            //hasGeneratedGrid = true;
         }
     }
 
-    private void GenerateGrid() {
+    private void GenerateGrid(int pX, int pY) {
         // Algo to generate the grid with walls.
         int gridPositionX = ResetGridPosition(GridAxis.X);
         int gridPositionY = ResetGridPosition(GridAxis.Y);
-        int totalX = gridAmount + 2;
-        int totalY = gridAmount + 2;
+        int totalX = pX + 2;
+        int totalY = pY + 2;
         GridType gridType;
         for (int cellX = 0; cellX < totalX; cellX++) {
             for (int cellY = 0; cellY < totalY; cellY++) {
@@ -110,8 +111,22 @@ public class GridManager : Component, IUpdateable {
     private bool IsWall(int pX, int pY, int pXMax, int pYMax) {
         return pX == 0 || pY == 0 || pX == pXMax - 1 || pY == pYMax - 1;
     }
+    private void GenerateGridPerScreenSize() {
+        if (grid.Count >= 1) {
+            RemoveGrid();    
+        }
+        Vector2 screen = ScreenManager.Instance.GetScreenSize();
+        int amountX = (int)screen.X / gridSize - 2;
+        int amountY = (int)screen.Y / gridSize - 2;
+        GenerateGrid(pX: amountY, pY: amountX);
+    }
 
-
+    private void RemoveGrid() {
+        foreach (Grid singleCell in grid) {
+            SceneHandler.Instance.ActiveScene.RemoveObject(singleCell);
+        }
+        grid.Clear();
+    }
     private int ResetGridPosition(GridAxis pGridAxis) {
         if (pGridAxis == GridAxis.X) {
             return 0 + (int)Owner.Transform.Position.X;
